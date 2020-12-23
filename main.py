@@ -15,9 +15,9 @@ def perform_tests(excel_file: ExcelFile):
 def write_random_values(excel_file: ExcelFile):
     for letter in ALPHABET_UPPER:
         for number in DIGITS:
-            excel_file.write_cell_value(letter,
-                                        number,
+            excel_file.write_cell_value(letter, number,
                                         str(get_random_three_digit_number()))
+    excel_file.save_changes()
 
 
 def main():
