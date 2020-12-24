@@ -1,5 +1,5 @@
 import openpyxl
-import os
+from os import getcwd
 import pathlib2
 
 
@@ -43,7 +43,7 @@ class ExcelFile:
     @staticmethod
     def get_current_working_directory() -> str:
         try:
-            return os.getcwd()
+            return getcwd()
         except RuntimeError:
             raise RuntimeError
 

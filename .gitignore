@@ -5,5 +5,6 @@
 # .gitignore
 
 # folders to ignore
+__pycache__/
 .idea/
 venv_*/

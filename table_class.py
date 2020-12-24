@@ -18,11 +18,9 @@ class Lotus(Vehicle):
             return
         self.weight="Not Light"
 
-
-myCar=Lotus()
-branCar=Lotus()
-myCar.weigh_car(weight=2)
-branCar.weigh_car(weight=22222222222222222222222)
-
-
-pass
+if __name__=='__main__':
+    myCar=Lotus()
+    branCar=Lotus()
+    myCar.weigh_car(weight=2)
+    branCar.weigh_car(weight=22222222222222222222222)
+    pass
