@@ -5,6 +5,24 @@ class InterfaceMaker:
     def __init__(self):
         pass
 
+    def favorite_color_picker(self):
+        choices = ('Red', 'Green', 'Blue', 'Yellow', 'Orange', 'Purple', 'Chartreuse')
+
+        layout = [[sg.Text('What is your favorite color?')],
+                  [sg.Listbox(choices, size=(15, len(choices)), key='-COLOR-')],
+                  [sg.Button('Ok')]]
+
+        window = sg.Window('Pick a color', layout)
+
+        while True:  # the event loop
+            event, values = window.read()
+            if event == sg.WIN_CLOSED:
+                break
+            if event == 'Ok':
+                if values['-COLOR-']:  # if something is highlighted in the list
+                    sg.popup(f"Your favorite color is {values['-COLOR-'][0]}")
+        window.close()
+
     def make_file_browser(self):
         if len(sys.argv) == 1:
             event, values = sg.Window('My Script',
@@ -39,6 +57,10 @@ class InterfaceMaker:
         # Finish up by removing from the screen
         window.close()  # Part 5 - Close the Window
 
+    def make_grid_using_math(self):
+        layout = [[sg.Button(f'{row}, {col}') for col in range(4)] for row in range(4)]
+        event, values = sg.Window('List Comprehensions', layout).read(close=True)
+
 if __name__ == '__main__':
     gui = InterfaceMaker()
-    gui.make_responsive_interface()
+    gui.favorite_color_picker()
