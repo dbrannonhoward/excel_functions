@@ -63,4 +63,4 @@ class InterfaceMaker:
 
 if __name__ == '__main__':
     gui = InterfaceMaker()
-    gui.favorite_color_picker()
+    gui.make_file_browser()
