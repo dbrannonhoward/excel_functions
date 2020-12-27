@@ -87,7 +87,7 @@ class ExcelFile:
     def read_cell_value(self, col: str, row: str) -> str:
         cell = col + row
         try:
-            value = self.worksheet[cell].value
+            value = self.ws[cell].value
             return value
         except RuntimeError:
             raise RuntimeError
