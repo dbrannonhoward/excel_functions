@@ -12,6 +12,11 @@ class ExcelFile:
         except RuntimeError:
             raise RuntimeError
 
+    @classmethod
+    def add_xlsx_extension(cls, filename: str) -> str:
+        filename = filename.split('.')[0]  # if filename has an extension, this removes it
+        return filename + ".xlsx"  # puts .xlsx extension on the bare filename
+
     def cell_contains(self, col: str, row: str, search_term: str) -> bool:
         try:
             cell_value = self.read_cell_value(col, row)
@@ -30,6 +35,22 @@ class ExcelFile:
             return False
         except RuntimeError:
             raise RuntimeError
+
+    @classmethod
+    def create_empty_excel_workbook_named_(cls, new_worksheet_name: str) -> bool:
+        """
+        creates a new excel sheet named new_worksheet_name
+        :param new_worksheet_name:
+        :return: true if creation appears successful
+        """
+        try:
+            new_worksheet_name = ExcelFile.add_xlsx_extension(new_worksheet_name)  # adds .xlsx extension
+            ExcelFile.workbook = openpyxl.Workbook()  # opens a new workbook instance
+            ExcelFile.workbook.save(new_worksheet_name)  # saves the workbook instance to disk
+            ExcelFile.workbook.close()  # closes the file handle so python can close cleanly
+            return True
+        except OSError:
+            return False
 
     def get_all_sheet_names(self) -> list:
         list_of_sheet_titles = list()  # initialize an empty list
