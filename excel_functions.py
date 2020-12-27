@@ -4,13 +4,8 @@ import pathlib2
 
 
 class ExcelFile:
-    def __init__(self, filename: str):
-        try:
-            self.filename = self.get_filename_with_full_path(filename)
-            self.workbook = openpyxl.load_workbook(self.filename)
-            self.worksheet = self.workbook.active
-        except RuntimeError:
-            raise RuntimeError
+    def __init__(self):
+        pass
 
     @classmethod
     def add_xlsx_extension(cls, filename: str) -> str:
@@ -55,7 +50,7 @@ class ExcelFile:
     def get_all_sheet_names(self) -> list:
         list_of_sheet_titles = list()  # initialize an empty list
         try:
-            for sheet in self.workbook:
+            for sheet in self.wb:
                 list_of_sheet_titles.append(sheet.title)
             return list_of_sheet_titles
         except RuntimeError:
@@ -74,6 +69,21 @@ class ExcelFile:
         except RuntimeError:
             raise RuntimeError
 
+
+    def open_existing_workbook(self, workbook_name: str) -> bool:
+        """
+        attempts to open a file on disk in the current working directory
+        :param workbook_name: the workbook that will try to be opened
+        :return: success, True or False
+        """
+        try:
+            self.filename = ExcelFile.add_xlsx_extension(workbook_name)
+            self.wb = openpyxl.load_workbook(self.filename)
+            self.ws = self.wb.active
+            return True
+        except OSError:
+            return False
+
     def read_cell_value(self, col: str, row: str) -> str:
         cell = col + row
         try:
@@ -84,7 +94,7 @@ class ExcelFile:
 
     def save_changes(self):
         try:
-            self.workbook.save(self.filename)
+            self.wb.save(self.filename)
         except RuntimeError:
             raise RuntimeError
 
@@ -101,6 +111,6 @@ class ExcelFile:
         cell = col + row
         if self.valid_row(row):
             try:
-                self.worksheet[cell] = value
+                self.ws[cell] = value
             except RuntimeError:
                 raise RuntimeError
