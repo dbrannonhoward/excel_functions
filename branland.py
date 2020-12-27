@@ -15,8 +15,10 @@ class TestingFunctions:
 if __name__ == '__main__':
     col = "A"
     row = "3"
+    # testing if i can create an excel file, name it, save it, close it
     tf = TestingFunctions()
     tf.create_new_excel_workbook_using_existing_class("potato_beans")
+    # now seeing if i can re-open the same file, write to it and read from it
     excel = ExcelFile()
     excel.open_existing_workbook("potato_beans")
     excel.write_cell_value("A", "3", "butts")
