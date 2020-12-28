@@ -22,6 +22,7 @@ class ExcelFile:
         except RuntimeError:
             raise RuntimeError
 
+
     def cell_is_empty(self, col: str, row: str) -> bool:
         try:
             cell_value = self.read_cell_value(col, row)
