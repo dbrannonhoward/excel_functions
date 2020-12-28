@@ -9,12 +9,19 @@ class WesTest:
             print('Creation SUCCESS')
         else:
             print('you FAILED')
-    def cell_array (self, num_of_row, num_of_col):
-        num_of_row = 100
-        num_of_col = 10
+    def cell_array (self, num_of_row=1, num_of_col=100):
+        excel = ExcelFile()
+        excel.open_existing_workbook(my_name_for_my_excel_file)
         for i in range(1, num_of_col+1):
-            print (i)
-            print(chr(ord('@')+i))
+            col = chr(ord('@')+i)
+            for i in range(1, num_of_row+1):
+                row = i
+                row = str(row)
+                print(col + row)
+                excel.write_cell_value(col, row, col+row)
+        excel.save_changes()
+
+
 
 
 
