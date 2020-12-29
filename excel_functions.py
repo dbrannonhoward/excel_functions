@@ -110,6 +110,7 @@ class ExcelFile:
 
     def write_cell_value(self, col: str, row: str, value: str):
         cell = col + row
+        # print(cell)
         if self.valid_row(row):
             try:
                 self.ws[cell] = value
