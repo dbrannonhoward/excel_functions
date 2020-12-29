@@ -21,11 +21,11 @@ class WesTest:
                 excel.write_cell_value(col, row, col+row)
         excel.save_changes()
     def copy_excel_cell_from_one_sheet_to_another(self, sheet_one):
-        col = 'A'
-        row = '1'
+        col = 'S'
+        row = '20'
         excel = ExcelFile()
         excel.open_existing_workbook(sheet_one)
-        print(excel.read_cell_value(col, row))
+        excel.read_cell_value(col, row)
 
 
 
