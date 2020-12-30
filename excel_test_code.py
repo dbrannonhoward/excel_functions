@@ -18,33 +18,26 @@ class WesTest:
             for i in range(1, num_of_row+1):
                 row = i
                 row = str(row)
-                print(col + row)
+                #print(col + row)
                 excel.write_cell_value(col, row, col+row)
         excel.save_changes()
     def copy_excel_cell_from_one_sheet_to_another(self, sheet_one, sheet_two):
-        col = 'S'
-        row = '20'
+        col = 'B'
+        row = '5'
         excel = ExcelFile()
         excel.open_existing_workbook(sheet_one)
         copied_cell = excel.read_cell_value(col, row)
+        excel.save_changes()
         excel.open_existing_workbook(sheet_two)
-        excel.write_cell_value('A', '12', 'fuck you A12')
-        print(copied_cell)
+        #print(copied_cell)
+        excel.write_cell_value(col, row, copied_cell)
+        excel.save_changes()
 
 if __name__ == '__main__':
-    excel = ExcelFile()
-    excel.write_cell_value('A', '7', 'fuck')
-
-    # excel_being_copied = 'tomato'
-    # excel_being_pasted = 'zuccini'
-    # cell_entry = 'cell entry I made'
-    # wt = WesTest()
-    # wt.create_excel_workbook(excel_being_copied)
-    # wt.create_excel_workbook(excel_being_pasted)
-    # wt.open_existing_excel_workbook_creates_array_of_cell_values(1000, 26)
-    # wt.copy_excel_cell_from_one_sheet_to_another(excel_being_copied, excel_being_pasted)
-
-
-
-    # excel = ExcelFile()
-    # excel.open_existing_workbook(my_name_for_my_excel_file)
+    excel_being_copied = 'tomato'
+    excel_being_pasted = 'zuccini'
+    wt = WesTest()
+    #wt.create_excel_workbook(excel_being_copied)
+    #wt.create_excel_workbook(excel_being_pasted)
+    #wt.open_existing_excel_workbook_creates_array_of_cell_values(1000, 26)
+    wt.copy_excel_cell_from_one_sheet_to_another(excel_being_copied, excel_being_pasted)
