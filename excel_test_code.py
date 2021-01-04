@@ -49,7 +49,7 @@ if __name__ == '__main__':
     today = datetime.today().strftime('%d_%b_%Y')
     wt = WesTest()
     excel = ExcelFile()
-    todayWarrantyFile = 'WarrantyClaims' + today)
+    todayWarrantyFile = 'WarrantyClaims' + today
     wt.create_excel_workbook(todayWarrantyFile)
     excel.open_existing_workbook(todayWarrantyFile)
 

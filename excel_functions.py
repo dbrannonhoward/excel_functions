@@ -53,7 +53,7 @@ class ExcelFile:
         try:
             for sheet in self.wb:
                 list_of_sheet_titles.append(sheet.title)
-            return list_of_sheet_titles
+                return list_of_sheet_titles
         except RuntimeError:
             raise RuntimeError
 
